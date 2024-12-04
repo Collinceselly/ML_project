@@ -18,7 +18,7 @@ def index():
 @app.route('/predictdata',methods=['GET','POST'])
 def predict_datapoint():
     if request.method=='GET':
-        return render_template('home.html')
+        return render_template('index.html')
     else:
         data=CustomData(
             gender=request.form.get('gender'),
@@ -38,9 +38,9 @@ def predict_datapoint():
         print("Mid Prediction")
         results=predict_pipeline.predict(pred_df)
         print("after Prediction")
-        return render_template('home.html',results=results[0])
+        return render_template('index.html',results=results[0])
     
 
 if __name__=="__main__":
     app.debug = True
-    app.run(host="0.0.0.0")        
+    app.run(host="0.0.0.0", port=7000)        
